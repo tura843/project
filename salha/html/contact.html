@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="../css/index_styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Salha HUssein Portfolio</title> <meta name="description" content="Contact Fadhiri Masudi for collaborations, inquiries, or just to say hello! Find phone numbers, email, WhatsApp, social media links, and a contact form."> <meta name="keywords" content="Fadhiri Masudi, contact, get in touch, email, phone, WhatsApp, Instagram, Twitter, X, TikTok, Facebook, developer, Tanzania"> <meta name="author" content="Fadhiri Masudi"> <link rel="stylesheet" href="css/styles.css">
+
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <h1>Salha HUssein</h1>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Me</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="contact.html" class="active">Contact</a></li>
+                    <li><a href="survey.html">Survey</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section id="contact-page" aria-labelledby="contact-heading">
+            <h2 id="contact-heading">Get In Touch</h2>
+            <p class="contact-intro">
+                I am more than someone who creates I'm someone who feels deeply and my art is my language when language fails. I create not to impress but to connect my self with others. Whether you have a question, a proposal, or just want to say hi, feel free to reach out! I'm currently based in Arusha, Tanzania.
+            </p>
+
+            <div class="contact-layout">
+                <div id="contact-details">
+                    <h3>Contact Information</h3>
+                    <ul class="contact-list">
+                        <li>
+                            <span class="contact-icon">📧</span> <a href="mailto:fadhilimansoor54@gmail.com">salhaturra.3@gmail.com</a>
+                        </li>
+                        <li>
+                             <span class="contact-icon">📞</span> <span>
+                                 <a href="tel:+255748898991">+255 748898991</a> /
+                                 <a href="tel:+255789755578">+255 789755578</a>
+                            </span>
+                        </li>
+                         <li>
+                             <span class="contact-icon"><img src="../assets/tsup.png" alt="Instagram icon"></span> <a href="https://wa.me/255748898991" target="_blank" rel="noopener noreferrer">WhatsApp (+255 748898991)</a>
+                        </li>
+                    </ul>
+
+                    <h3>Follow Me</h3>
+                     <ul class="contact-list social-media">
+                         <li>
+                             <span class="contact-icon"><img src="../assets/insta.png" alt="Instagram icon"></span> 
+                             <a href="https://www.instagram.com/Salha_Muhssein" target="_blank" rel="noopener noreferrer">Instagram (Salha_Muhssein)</a>
+                         </li>
+                        
+                         <li>
+                             <span class="contact-icon"><img src="../assets/tiktok-.png" alt="TikTok icon"></span> 
+                             <a href="https://www.tiktok.com/Salha_Muhssein" target="_blank" rel="noopener noreferrer">TikTok (Salha_MUhssein)</a>
+                         </li>
+                         <li>
+                             <span class="contact-icon"><img src="../assets/github.png" alt="GitHub icon"></span>
+                            <a href="https://github.com/tura843" target="_blank">GitHub</a>
+                        </li>
+                     </ul>
+                </div>
+
+                <div id="contact-form-section">
+                    <h3>Send a Message</h3>
+                    <form id="contact-form" novalidate> <div class="form-group">
+                            <label for="name">Name:</label>
+                            <input type="text" id="name" name="name" placeholder="Your Full Name" required>
+                            <div class="error-message" id="name-error"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
+                             <div class="error-message" id="email-error"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject:</label>
+                            <input type="text" id="subject" name="subject" placeholder="Subject of your message (Optional)">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message:</label>
+                            <textarea id="message" name="message" rows="6" placeholder="Enter your message here..." required></textarea>
+                             <div class="error-message" id="message-error"></div>
+                        </div>
+                         <div id="form-status" class="form-status" role="status" aria-live="polite"></div>
+                        <button type="submit" class="cta-button">Send Message</button>
+                    </form>
+                </div>
+            </div> </section>
+    </main>
+
+    <footer id="footer-content">
+        <div class="container">
+            <p>
+                Copyright © <span id="year">2025</span> Salha Hussein. All Rights Reserved. Based in Arusha, Tanzania.
+                <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+            </p>
+            <p>
+            |
+                 <a href="https://github.com/tura843" target="_blank">GitHub</a> |
+                 <a href="mailto:salhaturra.3@gmail.com">salhaturra.3@gmail.com</a>
+            </p>
+        </div>
+    </footer>
+
+    <script src="../js/script.js" defer></script>
+
+</body>
+</html>

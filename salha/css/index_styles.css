@@ -1,0 +1,1248 @@
+/* css/styles.css */
+
+/* --- 1. Global Resets and Base Styles --- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* --- 2. CSS Variables (Theme Setup) --- */
+:root {
+  /* Light Theme (Default) */
+  --primary-color: #0056b3;      /* A nice blue */
+  --secondary-color: #e9ecef;    /* Light grey for backgrounds */
+  --background-color: #ffffff;  /* White background */
+  --text-color: #212529;         /* Dark grey text */
+  --heading-color: #003d80;    /* Darker blue for headings */
+  --link-color: #0056b3;
+  --link-hover-color: #003d80;
+  --button-bg: var(--primary-color);
+  --button-text: #ffffff;
+  --button-hover-bg: var(--link-hover-color);
+  --border-color: #dee2e6;
+  --image-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  --header-footer-bg: var(--secondary-color);
+
+  /* Dark Theme (Activated by adding class="dark-mode" to body) */
+  --dark-primary-color: #4dabf7;      /* Lighter blue */
+  --dark-secondary-color: #343a40;    /* Dark grey for backgrounds */
+  --dark-background-color: #121212;  /* Very dark background */
+  --dark-text-color: #e9ecef;         /* Light grey text */
+  --dark-heading-color: #a5d8ff;    /* Lighter blue for headings */
+  --dark-link-color: var(--dark-primary-color);
+  --dark-link-hover-color: #a5d8ff;
+  --dark-button-bg: var(--dark-primary-color);
+  --dark-button-text: #121212;
+  --dark-button-hover-bg: var(--dark-link-hover-color);
+  --dark-border-color: #495057;
+  --dark-image-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+  --dark-header-footer-bg: var(--dark-secondary-color);
+}
+
+/* Apply dark theme variables when .dark-mode class is present */
+body.dark-mode {
+  --primary-color: var(--dark-primary-color);
+  --secondary-color: var(--dark-secondary-color);
+  --background-color: var(--dark-background-color);
+  --text-color: var(--dark-text-color);
+  --heading-color: var(--dark-heading-color);
+  --link-color: var(--dark-link-color);
+  --link-hover-color: var(--dark-link-hover-color);
+  --button-bg: var(--dark-button-bg);
+  --button-text: var(--dark-button-text);
+  --button-hover-bg: var(--dark-button-hover-bg);
+  --border-color: var(--dark-border-color);
+  --image-shadow: var(--dark-image-shadow);
+  --header-footer-bg: var(--dark-header-footer-bg);
+}
+
+/* --- 3. Body and Typography --- */
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", sans-serif;
+  line-height: 1.6;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth theme transition */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Ensure footer stays at bottom */
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--heading-color);
+  margin-bottom: 0.75em;
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: 2.5rem; /* Responsive units might be better (clamp, vw) for advanced cases */
+}
+
+h2 {
+  font-size: 2rem;
+  border-bottom: 2px solid var(--primary-color); /* Add a subtle underline to H2 */
+  padding-bottom: 0.25em;
+  display: inline-block; /* Make border only as wide as text */
+}
+
+p {
+  margin-bottom: 1em;
+}
+
+a {
+  color: var(--link-color);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover,
+a:focus { /* Style focus state for accessibility */
+  color: var(--link-hover-color);
+  text-decoration: underline;
+}
+
+/* --- 4. Layout --- */
+.container { /* Optional: Add this class to header, main, footer for consistent width */
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+header, footer {
+    background-color: var(--header-footer-bg);
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+main {
+  flex-grow: 1; /* Ensure main content takes available space */
+  max-width: 960px; /* More focused content width */
+  margin: 2rem auto; /* Center main content and add spacing */
+  padding: 0 20px; /* Padding on smaller screens */
+}
+
+section {
+  margin-bottom: 3rem; /* Spacing between sections */
+}
+
+/* --- 5. Header and Navigation --- */
+header .container { /* Apply container styling if using the class */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; /* Allow wrapping on small screens */
+}
+
+header h1 {
+    margin-bottom: 0; /* Remove default margin */
+    font-size: 1.8rem; /* Slightly smaller header H1 */
+}
+
+.main-nav ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap; /* Allow nav items to wrap */
+  padding: 0;
+  margin: 0;
+}
+
+.main-nav li {
+  margin-left: 1.5rem;
+}
+
+.main-nav a {
+  text-decoration: none;
+  font-weight: bold;
+  padding: 0.5rem 0; /* Add padding for easier clicking */
+  position: relative; /* For pseudo-element underline effect */
+  display: inline-block;
+}
+
+/* Underline effect on hover/focus */
+.main-nav a::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--primary-color);
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+}
+
+.main-nav a:hover::after,
+.main-nav a:focus::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+/* --- Additions/Modifications in css/styles.css --- */
+
+/* Style the greeting section container */
+#greeting-section {
+    text-align: center; /* Center the greeting container */
+    margin-bottom: 2.5rem; /* Add some space below */
+}
+
+#greeting-container {
+    display: inline-block; /* Keep container width to its content */
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    background: linear-gradient(135deg, var(--secondary-color), var(--background-color)); /* Subtle gradient background */
+    border: 1px solid var(--border-color);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    opacity: 0; /* Start hidden for animation */
+    animation: fadeInGreeting 1s ease-out forwards; /* Apply fade-in animation */
+    animation-delay: 0.3s; /* Start animation slightly after page load */
+    max-width: 90%; /* Ensure it doesn't overflow on small screens */
+}
+
+/* Styles for the greeting text itself */
+#greeting {
+    font-size: 1.1rem; /* Slightly larger font */
+    font-weight: 500; /* Medium weight */
+    color: var(--text-color); /* Use theme text color */
+    margin: 0; /* Remove default paragraph margin */
+    display: inline; /* Allow icon and text on same line */
+    vertical-align: middle;
+}
+
+/* Style for the icon placeholder */
+#greeting-icon {
+    display: inline-block;
+    margin-right: 0.75rem; /* Space between icon and text */
+    font-size: 1.5rem; /* Make icon larger */
+    vertical-align: middle;
+    color: var(--primary-color); /* Use primary theme color for icon */
+}
+
+
+/* Dark mode adjustments for the gradient */
+body.dark-mode #greeting-container {
+    background: linear-gradient(135deg, var(--dark-secondary-color), var(--dark-background-color));
+}
+
+/* Fade-in Animation */
+@keyframes fadeInGreeting {
+  from {
+    opacity: 0;
+    transform: translateY(-10px); /* Optional: slight move up effect */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+
+
+*/
+
+/* --- 6. Theme Toggle Button --- */
+#theme-toggle {
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    border: none;
+    padding: 0.6rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    position: fixed; /* Position relative to the viewport */
+    bottom: 20px;       /* Distance from the top */
+    right: 20px;      /* Distance from the right */
+    z-index: 1000;    /* Ensure it stays on top of other content */
+}
+
+#theme-toggle:hover,
+#theme-toggle:focus {
+    background-color: var(--button-hover-bg);
+    outline: 2px solid var(--primary-color); /* Focus outline */
+    outline-offset: 2px;
+}
+
+#theme-toggle:active {
+    transform: scale(0.95);
+}
+
+/* --- 7. Main Content Specific Styles --- */
+#greeting {
+    font-style: italic;
+    color: var(--text-color);
+    opacity: 0.8;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+#hero-intro h2 {
+    border-bottom: none; /* Remove default border for this heading */
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+}
+
+.hero-highlight {
+  color: var(--primary-color);
+  font-weight: bold;
+}
+
+/* Call to Action Button */
+.cta-button {
+  display: inline-block;
+  background-color: var(--button-bg);
+  color: var(--button-text) !important; /* Override link color */
+  padding: 0.8rem 1.8rem;
+  border-radius: 25px; /* Pill shape */
+  text-decoration: none;
+  font-weight: bold;
+  margin-top: 1rem;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  border: 2px solid transparent; /* For focus state */
+}
+
+.cta-button:hover,
+.cta-button:focus {
+  background-color: var(--button-hover-bg);
+  color: var(--button-text); /* Ensure text color stays */
+  text-decoration: none;
+  transform: translateY(-2px); /* Slight lift effect */
+  outline: none;
+  border: 2px solid var(--background-color); /* Focus outline */
+}
+
+/* Profile Picture */
+#profile-pic-heading + img { /* Select image directly following the hidden heading */
+  display: block;
+  max-width: 300px; /* Control max size */
+  height: auto; /* Maintain aspect ratio */
+  border-radius: 90%; /* Make it circular */
+  margin: 1rem auto; /* Center the image */
+  box-shadow: var(--image-shadow); /* Subtle shadow */
+  border: 5px solid var(--background-color); /* Frame effect */
+}
+
+/* Featured Content - Iframe */
+section iframe {
+    display: block; /* Remove extra space below iframe */
+    max-width: 100%; /* Ensure iframe is responsive */
+    margin: 1rem auto; /* Center iframe */
+    border: 1px solid var(--border-color); /* Subtle border */
+    border-radius: 8px; /* Rounded corners */
+}
+
+/* --- 8. Footer --- */
+footer {
+  text-align: center;
+  margin-top: 2rem; /* Space above footer */
+  color: var(--text-color);
+  opacity: 0.9;
+  font-size: 0.9rem;
+}
+
+footer .container {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+}
+
+footer p {
+    margin-bottom: 0.5rem;
+}
+
+footer a {
+    margin: 0 0.5rem; /* Spacing for social links */
+}
+
+/* --- 9. Accessibility --- */
+.visually-hidden {
+  position: absolute !important;
+  height: 1px; width: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+  white-space: nowrap; /* Keep screen reader content on one line */
+}
+
+/* Add focus styles for other interactive elements if needed */
+input:focus, textarea:focus, select:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+
+/* --- 10. Responsive Design --- */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2rem;
+  }
+  h2 {
+    font-size: 1.75rem;
+  }
+
+  header .container {
+    flex-direction: column; /* Stack header items */
+    align-items: center; /* Center items */
+  }
+
+  header h1 {
+    margin-bottom: 0.5rem; /* Space below title when stacked */
+  }
+
+  .main-nav ul {
+    justify-content: center; /* Center nav items */
+    margin-top: 0.5rem;
+  }
+
+  .main-nav li {
+    margin: 0 0.5rem; /* Reduce nav item spacing */
+  }
+
+  #theme-toggle {
+    bottom: 15px;
+    right: 15px;
+    padding: 0.5rem 0.8rem;
+  }
+
+  main {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  section {
+    margin-bottom: 2rem;
+  }
+
+  #profile-pic-heading + img {
+      max-width: 200px; /* Smaller profile pic on mobile */
+  }
+}
+
+@media (max-width: 480px) {
+    h1 {
+      font-size: 1.8rem;
+    }
+    h2 {
+        font-size: 1.5rem;
+    }
+    .main-nav a {
+        padding: 0.4rem 0;
+        font-size: 0.9rem;
+    }
+    .cta-button {
+        padding: 0.6rem 1.5rem;
+        font-size: 0.9rem;
+    }
+    footer {
+        font-size: 0.8rem;
+    }
+}
+
+
+
+
+
+
+
+/* If you didn't add .container class styling before, add it now */
+.container {
+  max-width: 1100px; /* Or your preferred max width */
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+/* --- 5. Header and Navigation (Active Link Style) --- */
+.main-nav a.active {
+  color: var(--primary-color); /* Make active link stand out */
+  font-weight: bold;
+  border-bottom: 3px solid var(--primary-color); /* Add a distinct underline */
+}
+
+/* Remove hover/focus underline effect specifically for the active link */
+.main-nav a.active::after {
+  transform: scaleX(0); /* Prevent hover effect on active link */
+}
+
+/* --- 11. Projects Page Specific Styles --- */
+#projects-showcase h2 {
+  text-align: center;
+  margin-bottom: 1rem; /* Adjust spacing */
+  border-bottom: none; /* Optional: remove border if desired for main heading */
+}
+
+.projects-intro {
+  text-align: center;
+  margin-bottom: 3rem; /* Space before grid */
+  font-size: 1.1rem;
+  color: var(--text-color);
+  opacity: 0.9;
+  max-width: 700px; /* Limit width of intro text */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.projects-grid {
+  display: grid;
+  /* Create responsive columns: 1 on small, 2 on medium, 3 on large */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem; /* Space between grid items */
+}
+
+.project-card {
+  background-color: var(--secondary-color); /* Use secondary color for card background */
+  border-radius: 8px;
+  overflow: hidden; /* Ensures image corners are rounded if image is first */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex; /* Use flexbox for layout inside the card */
+  flex-direction: column; /* Stack image and content vertically */
+  border: 1px solid var(--border-color);
+}
+
+.project-card:hover,
+.project-card:focus-within { /* Apply effect on hover or when child is focused */
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.12);
+}
+
+.project-image {
+  width: 100%;
+  height: 400px; /* Fixed height for images */
+  object-fit: cover; /* Cover the area, crop if needed */
+  display: block;
+  background-color: #ccc; /* Placeholder bg color */
+}
+
+.project-content {
+  padding: 1.5rem;
+  flex-grow: 1; /* Allow content to fill remaining space */
+  display: flex;
+  flex-direction: column;
+}
+
+.project-content h3 {
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+  font-size: 1.4rem;
+  color: var(--heading-color);
+}
+
+.project-content p {
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+  flex-grow: 1; /* Push links to the bottom */
+}
+
+.project-content p strong {
+  color: var(--primary-color); /* Highlight labels like Tech/Role */
+}
+
+.project-links {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-color); /* Separator */
+  display: flex;
+  gap: 0.75rem; /* Space between links */
+  flex-wrap: wrap; /* Allow links to wrap */
+}
+
+.project-links .btn-link {
+  display: inline-block;
+  background-color: var(--button-bg);
+  color: var(--button-text) !important; /* Override default link color */
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: bold;
+  transition: background-color 0.2s ease;
+  text-align: center;
+  border: 1px solid transparent;
+}
+
+.project-links .btn-link:hover,
+.project-links .btn-link:focus {
+  background-color: var(--button-hover-bg);
+  text-decoration: none;
+  color: var(--button-text);
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+/* Style for disabled links */
+.project-links .btn-link.disabled {
+  background-color: #ccc;
+  color: #666 !important;
+  cursor: not-allowed;
+  pointer-events: none; /* Disable clicking */
+  opacity: 0.7;
+}
+
+body.dark-mode .project-links .btn-link.disabled {
+   background-color: #555;
+   color: #aaa !important;
+}
+
+
+/* Adjust grid for larger screens if needed */
+@media (min-width: 992px) {
+   /* Example: force 3 columns if auto-fit isn't desired */
+  /* .projects-grid {
+      grid-template-columns: repeat(3, 1fr);
+  } */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* --- Additions/Modifications in css/styles.css --- */
+
+/* --- About Page Specific Styles --- */
+
+#about-intro .about-content {
+  /* Optional: if using image */
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+}
+
+.about-profile-pic {
+  max-width: 180px;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+  /* margin-right: 2rem; if using flex */
+  box-shadow: var(--image-shadow);
+}
+
+#about-intro p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+#bio h3, #education h3, #skills h3, #hobbies h3 {
+  margin-bottom: 1.5rem;
+  /* Optional: Add an icon before heading */
+  /* position: relative; padding-left: 2rem; */
+}
+/* Example icon: #bio h3::before { content: '👤'; position: absolute; left: 0; } */
+
+
+/* Bio Details List */
+.bio-details {
+  margin-left: 1rem;
+  border-left: 3px solid var(--primary-color);
+  padding-left: 1.5rem;
+}
+
+.bio-details dt {
+  font-weight: bold;
+  color: var(--heading-color);
+  margin-top: 1rem;
+}
+
+.bio-details dd {
+  margin-left: 0; /* Reset default margin */
+  margin-bottom: 0.5rem;
+}
+
+/* Fun Fact Button/Text */
+.btn-link-inline { /* Style like a link, but it's a button */
+  background: none;
+  border: none;
+  color: var(--link-color);
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 0;
+  font-size: inherit; /* Inherit font size from dd */
+  font-family: inherit;
+}
+.btn-link-inline:hover,
+.btn-link-inline:focus {
+  color: var(--link-hover-color);
+}
+
+.fun-fact-hidden {
+  display: none; /* Hide text initially */
+  margin-left: 0.5rem;
+  font-style: italic;
+  opacity: 0.8;
+}
+
+.fun-fact-visible {
+  display: inline; /* Show text */
+}
+
+
+/* Education Timeline */
+.timeline {
+  list-style: none;
+  padding: 0;
+  position: relative;
+  margin-top: 2rem;
+}
+
+/* The vertical timeline bar */
+.timeline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 15px; /* Adjust position */
+  height: 100%;
+  width: 3px;
+  background-color: var(--border-color);
+}
+
+.timeline-item {
+  margin-bottom: 2.5rem;
+  position: relative;
+  padding-left: 50px; /* Space for the dot and line */
+}
+
+/* The timeline dot */
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: 7px; /* Align with the line */
+  top: 5px; /* Adjust vertical alignment */
+  height: 18px;
+  width: 18px;
+  background-color: var(--primary-color);
+  border-radius: 50%;
+  z-index: 1;
+  border: 3px solid var(--background-color); /* Creates a border effect */
+}
+
+.timeline-content {
+  background-color: var(--secondary-color);
+  padding: 1.2rem 1.5rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  position: relative; /* For potential ::after triangle */
+}
+
+.timeline-content h4 {
+  margin-top: 0;
+  margin-bottom: 0.25rem;
+  font-size: 1.2rem;
+  color: var(--heading-color);
+}
+
+.timeline-content p {
+  margin-bottom: 0.25rem;
+  font-size: 0.95rem;
+}
+.timeline-content p em { /* Style the date/status */
+  color: var(--text-color);
+  opacity: 0.8;
+  font-style: italic;
+}
+
+.timeline-date {
+  display: block;
+  font-weight: bold;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+  color: var(--primary-color);
+}
+
+
+/* Skills Section */
+.skills-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.skills-category h4 {
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+  border-bottom: 2px solid var(--secondary-color);
+  padding-bottom: 0.5rem;
+}
+
+.skills-category ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem; /* Gap between badges */
+}
+
+.skill-badge {
+  display: inline-block;
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+  padding: 0.4rem 0.8rem;
+  border-radius: 15px; /* Pill shape */
+  font-size: 0.9rem;
+  border: 1px solid var(--border-color);
+  transition: transform 0.2s ease;
+}
+
+.skill-badge:hover {
+  transform: scale(1.05);
+  background-color: var(--primary-color); /* Highlight on hover */
+  color: var(--button-text);
+  border-color: var(--primary-color);
+}
+
+/* Call to Action Section */
+#about-cta {
+  text-align: center;
+  margin-top: 3rem;
+  padding: 2rem;
+  background-color: var(--secondary-color);
+  border-radius: 8px;
+}
+
+#about-cta h4 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+#about-cta .cta-button {
+  margin: 0.5rem;
+}
+
+/* Add a secondary style for CTA buttons if needed */
+#about-cta .cta-button.secondary {
+  background-color: transparent;
+  color: var(--primary-color);
+  border: 2px solid var(--primary-color);
+}
+
+#about-cta .cta-button.secondary:hover,
+#about-cta .cta-button.secondary:focus {
+  background-color: var(--secondary-color); /* Slight bg change */
+  color: var(--link-hover-color);
+  border-color: var(--link-hover-color);
+}
+
+body.dark-mode #about-cta .cta-button.secondary {
+   color: var(--dark-primary-color);
+   border-color: var(--dark-primary-color);
+}
+body.dark-mode #about-cta .cta-button.secondary:hover,
+body.dark-mode #about-cta .cta-button.secondary:focus {
+   background-color: var(--dark-secondary-color);
+   color: var(--dark-link-hover-color);
+   border-color: var(--dark-link-hover-color);
+}
+
+/* Responsive Adjustments for About Page */
+@media (max-width: 768px) {
+  .timeline::before {
+      left: 10px; /* Adjust line position */
+  }
+  .timeline-item {
+      padding-left: 40px; /* Adjust item padding */
+  }
+  .timeline-item::before {
+      left: 2px; /* Adjust dot position */
+      height: 16px;
+      width: 16px;
+  }
+  .skills-container {
+       grid-template-columns: 1fr; /* Stack skills categories */
+  }
+}
+
+
+
+
+
+
+
+
+/* --- Additions/Modifications in css/styles.css --- */
+
+/* --- Contact Page Specific Styles --- */
+
+.contact-intro {
+  text-align: center;
+  margin-bottom: 3rem;
+  font-size: 1.1rem;
+  color: var(--text-color);
+  opacity: 0.9;
+  max-width: 750px; /* Limit width */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Two-column layout for contact details and form */
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1fr; /* Default single column */
+  gap: 3rem; /* Space between details and form */
+}
+
+@media (min-width: 800px) { /* Apply two columns on wider screens */
+  .contact-layout {
+      grid-template-columns: 1fr 1.5fr; /* Details take less space than form */
+      gap: 4rem;
+  }
+}
+
+#contact-details h3,
+#contact-form-section h3 {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  color: var(--heading-color);
+  border-bottom: 2px solid var(--primary-color);
+  padding-bottom: 0.5rem;
+  display: inline-block;
+}
+
+/* Contact Details List Styling */
+.contact-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2rem 0; /* Space below each list */
+}
+
+.contact-list li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.2rem;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.contact-icon {
+  display: inline-block;
+  width: 30px; /* Fixed width for alignment */
+  margin-right: 1rem;
+  color: var(--primary-color);
+  font-size: 1.4rem; /* Adjust emoji/icon size */
+  text-align: center;
+}
+
+/* Style for SVG icons if used */
+.contact-icon img {
+  width: 20px; /* Adjust SVG size */
+  height: 20px;
+  vertical-align: middle; /* Align SVG nicely */
+  opacity: 0.8;
+}
+body.dark-mode .contact-icon img {
+  filter: invert(75%) sepia(50%) saturate(500%) hue-rotate(180deg); /* Example filter for dark mode */
+}
+
+.contact-list a {
+  text-decoration: none;
+  color: var(--link-color);
+  word-break: break-word; /* Prevent long emails/links from overflowing */
+}
+.contact-list a:hover,
+.contact-list a:focus {
+  text-decoration: underline;
+  color: var(--link-hover-color);
+}
+
+.contact-list span:not(.contact-icon) {
+  flex-grow: 1;
+}
+
+/* Contact Form Styling */
+#contact-form-section {
+  background-color: var(--secondary-color); /* Subtle background for form area */
+  padding: 2rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  color: var(--heading-color);
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group textarea {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  background-color: var(--background-color); /* Match body background */
+  color: var(--text-color);
+  font-size: 1rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+/* Add theme transition for inputs */
+body.dark-mode .form-group input[type="text"],
+body.dark-mode .form-group input[type="email"],
+body.dark-mode .form-group textarea {
+   background-color: var(--dark-secondary-color); /* Slightly different bg */
+}
+
+
+.form-group input[type="text"]:focus,
+.form-group input[type="email"]:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(0, 86, 179, 0.2); /* Use primary color with alpha */
+}
+
+.form-group textarea {
+  resize: vertical; /* Allow vertical resize only */
+  min-height: 120px;
+}
+
+/* Error message styling */
+.error-message {
+  color: #dc3545; /* Red for errors */
+  font-size: 0.85rem;
+  margin-top: 0.3rem;
+  display: none; /* Hidden by default */
+}
+
+/* Style input when invalid (after JS validation adds class) */
+.form-group input.invalid,
+.form-group textarea.invalid {
+  border-color: #dc3545;
+}
+.form-group input.invalid:focus,
+.form-group textarea.invalid:focus {
+   box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.25);
+}
+
+
+/* Form status message styling */
+.form-status {
+  margin-bottom: 1rem;
+  padding: 0.8rem 1rem;
+  border-radius: 5px;
+  font-size: 0.95rem;
+  display: none; /* Hidden by default */
+  text-align: center;
+}
+
+.form-status.success {
+  background-color: #d1e7dd; /* Greenish */
+  color: #0f5132;
+  border: 1px solid #badbcc;
+  display: block; /* Show on success */
+}
+
+.form-status.error {
+  background-color: #f8d7da; /* Reddish */
+  color: #842029;
+  border: 1px solid #f5c2c7;
+  display: block; /* Show on error */
+}
+
+/* Submit button styling (reuse cta-button or customize) */
+#contact-form button[type="submit"] {
+  /* Uses .cta-button styles by default */
+  width: 100%; /* Make button full width */
+  padding: 0.9rem 1.5rem;
+  font-size: 1.1rem;
+  margin-top: 0.5rem;
+}
+
+
+
+
+
+
+
+    /* --- Additions/Modifications in css/styles.css --- */
+
+    /* --- Survey Page Specific Styles --- */
+
+    .survey-intro {
+      text-align: center;
+      margin-bottom: 3rem;
+      font-size: 1.1rem;
+      color: var(--text-color);
+      opacity: 0.9;
+      max-width: 750px; /* Limit width */
+      margin-left: auto;
+      margin-right: auto;
+  }
+
+  #survey-form fieldset {
+      border: 1px solid var(--border-color);
+      padding: 1.5rem 2rem 2rem 2rem; /* Add more padding */
+      margin-bottom: 2.5rem;
+      border-radius: 8px;
+      background-color: var(--secondary-color); /* Subtle background */
+  }
+
+  #survey-form legend {
+      font-weight: bold;
+      font-size: 1.3rem; /* Make legend stand out */
+      color: var(--heading-color);
+      padding: 0 0.75rem; /* Padding around legend text */
+      margin-left: 0.5rem; /* Align with content */
+  }
+
+  /* Style for labels within radio/checkbox groups */
+  .form-label {
+      display: block;
+      margin-bottom: 1rem;
+      font-weight: bold;
+      color: var(--heading-color);
+  }
+
+  /* Required field indicator */
+  .required-indicator {
+      color: #dc3545; /* Red */
+      margin-left: 0.25rem;
+      font-weight: bold;
+  }
+
+
+  /* Radio Button and Checkbox Styling */
+  .radio-group .error-message,
+  .checkbox-group .error-message {
+      margin-top: 0.5rem; /* Space above error message */
+  }
+
+  .radio-option,
+  .checkbox-option {
+      display: flex; /* Align input and label */
+      align-items: center;
+      margin-bottom: 0.8rem;
+      cursor: pointer; /* Make the whole area clickable */
+  }
+
+  .radio-option label,
+  .checkbox-option label {
+      margin-left: 0.75rem;
+      font-weight: normal; /* Override default label bolding */
+      color: var(--text-color);
+      flex-grow: 1; /* Allow label to take space */
+      cursor: pointer;
+  }
+
+  /* Custom appearance for radio/checkbox (optional but looks better) */
+  input[type="radio"],
+  input[type="checkbox"] {
+      appearance: none; /* Remove default browser styles */
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      background-color: var(--background-color);
+      border: 2px solid var(--border-color);
+      width: 1.1em;
+      height: 1.1em;
+      margin: 0; /* Reset margin */
+      cursor: pointer;
+      position: relative; /* For positioning the checkmark */
+      flex-shrink: 0; /* Prevent shrinking */
+      transition: background-color 0.2s ease, border-color 0.2s ease;
+  }
+
+  input[type="radio"] {
+      border-radius: 50%; /* Make radio buttons circular */
+  }
+
+  input[type="checkbox"] {
+      border-radius: 3px; /* Slightly rounded checkboxes */
+  }
+
+  /* Checked state */
+  input[type="radio"]:checked,
+  input[type="checkbox"]:checked {
+      background-color: var(--primary-color);
+      border-color: var(--primary-color);
+  }
+
+  /* Checkmark/Dot inside */
+  input[type="radio"]:checked::after {
+      content: '';
+      display: block;
+      width: 0.5em;
+      height: 0.5em;
+      border-radius: 50%;
+      background-color: var(--background-color); /* Color of the dot */
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+  }
+
+  input[type="checkbox"]:checked::after {
+      content: '';
+      display: block;
+      width: 0.3em;
+      height: 0.6em;
+      border: solid var(--background-color); /* Color of the checkmark */
+      border-width: 0 3px 3px 0;
+      position: absolute;
+      top: 40%; /* Adjust position */
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(45deg);
+  }
+
+  /* Focus state for accessibility */
+  input[type="radio"]:focus,
+  input[type="checkbox"]:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(0, 86, 179, 0.2); /* Use primary color with alpha */
+  }
+
+  /* Select dropdown styling */
+  .form-group select {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      border: 1px solid var(--border-color);
+      border-radius: 5px;
+      background-color: var(--background-color);
+      color: var(--text-color);
+      font-size: 1rem;
+      appearance: none; /* Remove default arrow */
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007bff%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'); /* Custom arrow */
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      background-size: 0.65em auto;
+      cursor: pointer;
+  }
+  body.dark-mode .form-group select {
+      background-color: var(--dark-secondary-color); /* Match dark input background */
+      background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23a5d8ff%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'); /* Dark mode arrow color */
+  }
+
+  .form-group select:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(0, 86, 179, 0.2);
+  }
+
+
+  /* Ensure submit button is full width */
+  #survey-form button[type="submit"] {
+      width: 100%;
+      padding: 0.9rem 1.5rem;
+      font-size: 1.1rem;
+      margin-top: 1rem; /* Space above button */
+  }
+
+  

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="../css/index_styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Survey - Salha Hussein</title> <meta name="description" content="Please share your feedback about Fadhiri Masudi's portfolio through this short survey. Your input is valuable!"> <meta name="keywords" content="Fadhiri Masudi, survey, feedback, portfolio review, web development, Tanzania"> <meta name="author" content="Fadhiri Masudi"> <meta name="robots" content="noindex, nofollow"> <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <h1>Salha Hussein</h1>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Me</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="survey.html" class="active">Survey</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section id="survey-section" aria-labelledby="survey-heading">
+            <h2 id="survey-heading">Portfolio Feedback Survey</h2>
+            <p class="survey-intro">
+                Thank you for visiting my portfolio! Your feedback is incredibly valuable and helps me improve. Please take a moment to fill out this short survey. Asante sana!
+            </p>
+
+            <form id="survey-form" novalidate>
+                <fieldset>
+                    <legend>About You (Optional)</legend>
+                    <div class="form-group">
+                        <label for="survey-name">Name:</label>
+                        <input type="text" id="survey-name" name="name" placeholder="Your Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="survey-email">Email:</label>
+                        <input type="email" id="survey-email" name="email" placeholder="your.email@example.com">
+                        <div class="error-message" id="survey-email-error"></div>
+                    </div>
+                     <div class="form-group">
+                        <label for="how-found">How did you find my portfolio?</label>
+                        <select id="how-found" name="how_found">
+                            <option value="">--Please choose an option--</option>
+                            <option value="search_engine">Search Engine (Google, etc.)</option>
+                            <option value="social_media">Social Media (LinkedIn, X, etc.)</option>
+                            <option value="referral">Referral / Word of Mouth</option>
+                            <option value="github">GitHub</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Your Experience</legend>
+                    <div class="form-group radio-group required" role="radiogroup" aria-labelledby="satisfaction-label">
+                        <span id="satisfaction-label" class="form-label">Overall satisfaction with the portfolio design and usability? <span class="required-indicator">*</span></span>
+                        <div class="radio-option">
+                            <input type="radio" id="satisfaction-5" name="satisfaction" value="5" required>
+                            <label for="satisfaction-5">Very Satisfied</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="satisfaction-4" name="satisfaction" value="4">
+                            <label for="satisfaction-4">Satisfied</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="satisfaction-3" name="satisfaction" value="3">
+                            <label for="satisfaction-3">Neutral</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="satisfaction-2" name="satisfaction" value="2">
+                            <label for="satisfaction-2">Dissatisfied</label>
+                        </div>
+                         <div class="radio-option">
+                            <input type="radio" id="satisfaction-1" name="satisfaction" value="1">
+                            <label for="satisfaction-1">Very Dissatisfied</label>
+                        </div>
+                        <div class="error-message" id="satisfaction-error"></div>
+                    </div>
+
+                    <div class="form-group checkbox-group" role="group" aria-labelledby="interesting-sections-label">
+                         <span id="interesting-sections-label" class="form-label">Which sections did you find most interesting? (Check all that apply)</span>
+                         <div class="checkbox-option">
+                             <input type="checkbox" id="interest-home" name="interesting_sections" value="home">
+                             <label for="interest-home">Homepage / Introduction</label>
+                         </div>
+                         <div class="checkbox-option">
+                             <input type="checkbox" id="interest-about" name="interesting_sections" value="about">
+                             <label for="interest-about">About Me / Background</label>
+                         </div>
+                         <div class="checkbox-option">
+                             <input type="checkbox" id="interest-projects" name="interesting_sections" value="projects">
+                             <label for="interest-projects">Projects Showcase</label>
+                        </div>
+                         <div class="checkbox-option">
+                             <input type="checkbox" id="interest-contact" name="interesting_sections" value="contact">
+                             <label for="interest-contact">Contact Information</label>
+                        </div>
+                         <div class="checkbox-option">
+                             <input type="checkbox" id="interest-design" name="interesting_sections" value="design">
+                             <label for="interest-design">Overall Design / Theme</label>
+                        </div>
+                        </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Feedback & Suggestions</legend>
+                     <div class="form-group">
+                        <label for="clarity">Was the information presented clearly?</label>
+                        <select id="clarity" name="clarity">
+                            <option value="">--Select--</option>
+                            <option value="yes">Yes, very clear</option>
+                            <option value="mostly">Mostly clear</option>
+                            <option value="somewhat">Somewhat clear</option>
+                            <option value="no">Not very clear</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="suggestions">Any suggestions for improvement or specific feedback? <span class="required-indicator">*</span></label>
+                        <textarea id="suggestions" name="suggestions" rows="6" placeholder="Your valuable feedback goes here..." required></textarea>
+                        <div class="error-message" id="suggestions-error"></div>
+                    </div>
+                </fieldset>
+
+                <div id="survey-form-status" class="form-status" role="status" aria-live="polite"></div>
+                <button type="submit" class="cta-button">Submit Feedback</button>
+
+            </form>
+        </section>
+    </main>
+
+    <footer id="footer-content">
+        <div class="container">
+            <p>
+                Copyright © <span id="year">2025</span> Salha Hussein. All Rights Reserved. Based in Arusha, Tanzania.
+                <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+            </p>
+            <p>
+                <a href="https://github.com/tura843" target="_blank">GitHub</a> |
+                <a href="mailto:salhaturra.3@gmail.com">salhaturra.3@gmail.com</a>
+           </p>
+        </div>
+    </footer>
+
+    <script src="../js/script.js" defer></script>
+
+</body>
+</html>
